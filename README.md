@@ -1,5 +1,7 @@
 # PySvelte Login Template
-A template project for Python and Sveltekit - Login has been completed using a temporary dictionary database.
+A template project for Python and Sveltekit with tailwind and DaisyUI preinstalled.
+
+Login has been completed using a temporary dictionary database.
 
 This template was created using VSCode connected to WSL2. To use without further configuration, either do the same, or use with VSCode installed within a linux distro (tested with Ubuntu).
 
