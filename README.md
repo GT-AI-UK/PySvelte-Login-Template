@@ -13,3 +13,4 @@ Setup (terminal):
 5. run `python -m venv ./venv`
 6. run `source ./venv/bin/activate`
 7. run `pip install -r requirements.txt`
+8. Open in VSCode, run with F5
