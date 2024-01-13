@@ -1,0 +1,96 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Start Svelte",
+            "type": "shell",
+            "command": "npm run dev",
+            "options": {
+                "cwd": "${workspaceFolder}/svelte_frontend"
+            },
+            "isBackground": true,
+            "problemMatcher": {
+                "owner": "custom",
+                "pattern": {
+                    "regexp": "."
+                },
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": "svelte-test-2@0.0.1 dev",
+                    "endsPattern": ".*VITE v.*ready in.*"
+                }
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+                "group": "SnP",
+                "showReuseMessage": false,
+                "clear": false
+            }
+        },
+        {
+            "label": "Start Python",
+            "type": "shell",
+            "command": "${workspaceFolder}/python_backend/venv/bin/uvicorn",
+            "args": ["python_backend.app:app", "--reload", "--reload-exclude", "svelte_frontend"],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "isBackground": true,
+            "problemMatcher": [
+                {
+                    "owner": "python",
+                    "pattern": {
+                        "regexp": "."
+                    },
+                    "background": {
+                        "activeOnStart": true,
+                        "beginsPattern": "^.*?Uvicorn running.*",
+                        "endsPattern": "INFO:     Application startup complete."
+                    }
+                }
+            ],
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+                "group": "SnP",
+                "showReuseMessage": false,
+                "clear": false
+            }
+        },
+        {
+            "label": "Start Both Servers",
+            "dependsOn": ["Start Svelte", "Start Python"],
+            "dependsOrder": "parallel",
+            "group": "build"
+        },
+        {
+            "label": "Stop Svelte",
+            "type": "shell",
+            "command": "pkill -f '${workspaceFolder}/svelte_frontend/node_modules/.bin/vite dev'",
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "silent",
+                "panel": "new",
+                "showReuseMessage": false,
+                "close": true
+            }
+        },
+        {
+            "label": "Stop Python",
+            "type": "shell",
+            "command": "pkill -f '${workspaceFolder}/python_backend/venv/bin/python3 ${workspaceFolder}/python_backend/venv/bin/uvicorn python_backend.app:app --reload --reload-exclude svelte_frontend'",
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "silent",
+                "panel": "new",
+                "showReuseMessage": false,
+                "close": true
+            }
+        },
+        {
+            "label": "Stop Both Servers",
+            "dependsOn": ["Stop Svelte", "Stop Python"]
+        }
+    ]
+}

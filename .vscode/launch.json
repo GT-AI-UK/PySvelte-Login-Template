@@ -1,0 +1,20 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Launch Chrome",
+            "url": "http://localhost:5173", // adjust the port if needed
+            "webRoot": "${workspaceFolder}/svelte_frontend",
+            "preLaunchTask": "Start Both Servers",
+            "postDebugTask": "Stop Both Servers"
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Run Svelte and Debug",
+            "configurations": ["Launch Chrome"]
+        }
+    ]
+}
